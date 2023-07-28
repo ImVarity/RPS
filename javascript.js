@@ -1,50 +1,94 @@
-
-
-
-
 function getComputerChoice() {
     let rand = Math.floor(Math.random() * 3);
-
-    if (rand == 0)
-        return "rock"
-    else if (rand == 1)
-        return "paper";
-    else
-        return "scissors";
-
+    let choice = ["rock", "paper", "scissors"]
+    return choice[rand]
 }
 
 
 
 
-const buttons = document.querySelectorAll('button')
+let userWins = 0
+let compWins = 0
+let ties = 0
+let winner = ""
+
+let userWinsDisplay = document.createElement('div')
+let compWinsDisplay = document.createElement('div')
+let textDisplay = document.createElement('div')
+let tieDisplay = document.createElement('div')
+
+
+
 
 function logText(e) {
 
     computerSelection = getComputerChoice()
     console.log(this.classList.value)
+
     let playerSeclection = this.classList.value
     let battle = playerSeclection + computerSelection;
 
     
+
+
     if (playerSeclection === computerSelection)
-        return "Tie";
+    {
+        winner = "Tie";
+        ties++
+    }
 
     if (battle == "rockscissors")
-        console.log("You win! Rock beats scissors")
+    {
+        winner = "You win! Rock beats scissors"
+        userWins++
+    }
     else if (battle == "scissorsrock")
-        console.log("You lose! Rock beats scissors")
+    {
+        winner = "You lose! Rock beats scissors"
+        compWins++
+    }
     else if (battle == "scissorspaper")
-        console.log("You win! Scissors beats paper")
+    {
+        winner = "You win! Scissors beats paper"
+        userWins++
+    }
     else if (battle == "paperscissors")
-        console.log("You lose! Paper beats scissors")
-    
+    {
+        winner = "You lose! Paper beats scissors"
+        compWins++
+    }
     else if (battle == "paperrock")
-        console.log("You win! Paper beats rock")
+    {
+        winner = "You win! Paper beats rock"
+        userWins++
+    }
     else if (battle == "rockpaper")
-        console.log("You lose! Paper beats rock")
+    {
+        winner = "You lose! Paper beats rock"
+        compWins++
+    }
+
+    let container = document.querySelector('.container')
+
+    userWinsDisplay.textContent = `Wins: ${userWins}`
+    compWinsDisplay.textContent = `Loses: ${compWins}`
+    tieDisplay.textContent = `Ties: ${ties}`
+    textDisplay.textContent = `${winner}`
+    
+
+    container.style.cssText = 'display: flex; flex-direction: column; align-items: center;'
+
+    
+    container.appendChild(userWinsDisplay)
+    container.appendChild(compWinsDisplay) 
+    container.appendChild(tieDisplay)
+    container.appendChild(textDisplay)
+        
+        
 }
 
+
+const buttons = document.querySelectorAll('button')
 buttons.forEach(button => button.addEventListener('click', logText))
 
 
@@ -52,41 +96,3 @@ buttons.forEach(button => button.addEventListener('click', logText))
 
 
 
-console.log(playerSeclection)
-console.log("HOLEELFJLDKJFSLDJFLDKSJFLKJ")
-
-
-
-function game() {
-    let userWins = 0;
-    let compWins = 0;
-
-
-
-
-    for (let i = 0; i < 3; i++)
-    {
-        let x = playRound(getComputerChoice());
-        console.log(x);
-        if (x.includes("win"))
-            userWins ++;
-        else if (x.includes("lose"))
-            compWins ++;
-
-
-        let userWinsDisplay = document.createElement('div')
-        let compWinsDisplay = document.createElement('div')
-
-        let container = document.querySelector('.container')
-
-        userWinsDisplay.textContent = `${userWins}`
-        compWinsDisplay.textContent = `${compWins}`
-
-
-        container.appendChild(userWinsDisplay)
-        container.appendChild(userWinsDisplay) 
-    }
-
-}
-
-game()

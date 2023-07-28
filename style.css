@@ -1,6 +1,8 @@
 .conatiner {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -8,6 +10,7 @@
     display: flex;
     justify-content: center;
     border: 3px pink dotted;
+
 }
 
 button {
