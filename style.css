@@ -1,0 +1,17 @@
+.conatiner {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.buttonholder {
+    display: flex;
+    justify-content: center;
+    border: 3px pink dotted;
+}
+
+button {
+    height: 100px;
+    width: 100px;
+}
+

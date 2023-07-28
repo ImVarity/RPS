@@ -1,3 +1,7 @@
+
+
+
+
 function getComputerChoice() {
     let rand = Math.floor(Math.random() * 3);
 
@@ -10,60 +14,79 @@ function getComputerChoice() {
 
 }
 
-function playRound(playerSeclectionn, computerSelection){
-    let playerSeclection = playerSeclectionn.toLowerCase();
+
+
+
+const buttons = document.querySelectorAll('button')
+
+function logText(e) {
+
+    computerSelection = getComputerChoice()
+    console.log(this.classList.value)
+    let playerSeclection = this.classList.value
     let battle = playerSeclection + computerSelection;
 
-
-
+    
     if (playerSeclection === computerSelection)
         return "Tie";
 
-
     if (battle == "rockscissors")
-        return "You win! Rock beats scissors";
+        console.log("You win! Rock beats scissors")
     else if (battle == "scissorsrock")
-        return "You lose! Rock beats scissors";
+        console.log("You lose! Rock beats scissors")
     else if (battle == "scissorspaper")
-        return "You win! Scissors beats paper";
+        console.log("You win! Scissors beats paper")
     else if (battle == "paperscissors")
-        return "You lose! Paper beats scissors";
+        console.log("You lose! Paper beats scissors")
     
     else if (battle == "paperrock")
-            return "You win! Paper beats rock";
+        console.log("You win! Paper beats rock")
     else if (battle == "rockpaper")
-            return "You lose! Paper beats rock";
-
-
-
-
+        console.log("You lose! Paper beats rock")
 }
+
+buttons.forEach(button => button.addEventListener('click', logText))
+
+
+
+
+
+
+console.log(playerSeclection)
+console.log("HOLEELFJLDKJFSLDJFLDKSJFLKJ")
+
+
 
 function game() {
     let userWins = 0;
     let compWins = 0;
 
-    for (let i = 0; i < 5; i++)
+
+
+
+    for (let i = 0; i < 3; i++)
     {
-        let x = playRound(prompt("Enter something"), getComputerChoice());
+        let x = playRound(getComputerChoice());
         console.log(x);
         if (x.includes("win"))
             userWins ++;
         else if (x.includes("lose"))
             compWins ++;
-        else
-            continue;
-        
 
 
+        let userWinsDisplay = document.createElement('div')
+        let compWinsDisplay = document.createElement('div')
 
+        let container = document.querySelector('.container')
+
+        userWinsDisplay.textContent = `${userWins}`
+        compWinsDisplay.textContent = `${compWins}`
+
+
+        container.appendChild(userWinsDisplay)
+        container.appendChild(userWinsDisplay) 
     }
-    if (userWins > compWins)
-        console.log("YOU WIN! Score is " + userWins + " to " + compWins);
-    else if (compWins > userWins)
-        console.log("YOU LOSE! Score is " + userWins + " to " + compWins);
-    else
-        console.log("TIE");
+
 }
 
 game()
